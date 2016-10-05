@@ -42,7 +42,7 @@ geodash.controllers["controller_main"] = function(
   state, map_config, stateschema, live)
 {
     $scope.map_config = map_config;
-    $scope.state = geodash.init_state(state, stateschema);
+    $scope.state = geodash.init.state(state, stateschema);
     $scope.live = live;
 
     $scope.refreshMap = function(state){
@@ -82,7 +82,24 @@ var init_geodashserver_controller_main = function(that, app)
   app.controller("GeoDashControllerBase", geodash.controllers.GeoDashControllerBase);
   app.controller("GeoDashControllerModal", geodash.controllers.GeoDashControllerModal);
 
-  geodash.init_controller(that, app, geodash.controllers.controller_main);
+
+  /*
+  * This pre-loads the controllers into Angular.  They aren't "executed" until a directive actually uses them,
+  * b/c we aren't using ng-controller, but data-geodash-controller(s).
+  */
+  $("[data-geodash-controller], [data-geodash-controllers]").each(function(){
+    var controllerName = $(this).attr("data-geodash-controller") || $(this).attr("data-geodash-controllers");
+    if(angular.isString(controllerName) && controllerName.length > 0)
+    {
+      var controller = extract(controllerName, geodash.controllers);
+      if(angular.isDefined(controller))
+      {
+        app.controller(controllerName, controller);
+      }
+    }
+  });
+
+  geodash.init.controller(that, app, geodash.controllers.controller_main);
 
   var selector_controller_base = [
     ".geodash-controller.geodash-about",
@@ -93,25 +110,25 @@ var init_geodashserver_controller_main = function(that, app)
     "[geodash-controller='geodash-base']"
   ].join(", ");
 
-  geodash.init_controllers(that, app, [{
+  geodash.init.controllers(that, app, [{
     "selector": selector_controller_base,
     "controller": geodash.controllers.controller_base
   }]);
 
-  geodash.init_controllers(that, app, [{
+  geodash.init.controllers(that, app, [{
     "selector": '.geodash-controller.geodash-sidebar.geodash-sidebar-right',
     "controller": geodash.controllers.controller_sidebar_geodasheditor
   }]);
 
   $("[geodash-controller='geodash-map']", that).each(function(){
     // Init This
-    geodash.init_controller($(this), app, geodash.controllers.controller_base);
+    geodash.init.controller($(this), app, geodash.controllers.controller_base);
 
     // Init Children
-    geodash.init_controllers($(this), app, [
-      { "selector": "[geodash-controller='geodash-map-map']", "controller": geodash.controllers.controller_map_map },
-      { "selector": "[geodash-controller='geodasheditor-welcome']", "controller": geodash.controllers.controller_geodasheditor_welcome },
-      { "selector": "[geodash-controller='geodash-map-legend']", "controller": geodash.controllers.controller_legend }
+    geodash.init.controllers($(this), app, [
+      { "selector": "[geodash-controller='geodash-map-map']", "controller": geodash.controllers.controller_map_map }
+      //{ "selector": "[geodash-controller='geodasheditor-welcome']", "controller": geodash.controllers.controller_geodasheditor_welcome },
+      //{ "selector": "[geodash-controller='geodash-map-legend']", "controller": geodash.controllers.controller_legend }
     ]);
 
   });
