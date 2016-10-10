@@ -1,35 +1,26 @@
 ---
 name: geodash-plugin-main
 controllers:
-  - name: controller_main
-    path: controller_main.js
+  - name: GeoDashControllerMain
+    path: GeoDashControllerMain.js
     handlers:
-      - event: clickedOnMap
-        handler: clickedOnMap
-      - event: filterChanged
-        handler: filterChanged
-      - event: hideLayer
-        handler: hideLayer
-      - event: hideLayers
-        handler: hideLayers
-      - event: layerLoaded
-        handler: layerLoaded
-      - event: requestToggleComponent
-        handler: requestToggleComponent
-      - event: selectStyle
-        handler: selectStyle
-      - event: showLayer
-        handler: showLayer
-      - event: showLayers
-        handler: showLayers
-      - event: stateChanged
-        handler: stateChanged
-      - event: switchBaseLayer
-        handler: switchBaseLayer
-      - event: viewChanged
-        handler: viewChanged
-      - event: zoomToLayer
-        handler: zoomToLayer
-directives: []
-templates: []
+      - { event: clickedOnMap, handler: clickedOnMap }
+      - { event: filterChanged, handler: filterChanged }
+      - { event: hideLayer, handler: hideLayer }
+      - { event: hideLayers, handler: hideLayers }
+      - { event: layerLoaded, handler: layerLoaded }
+      - { event: requestToggleComponent, handler: requestToggleComponent }
+      - { event: selectStyle, handler: selectStyle }
+      - { event: showLayer, handler: showLayer }
+      - { event: showLayers, handler: showLayers }
+      - { event: stateChanged, handler: stateChanged }
+      - { event: switchBaseLayer, handler: switchBaseLayer }
+      - { event: viewChanged, handler: viewChanged }
+      - { event: zoomIn, handler: zoomIn }
+      - { event: zoomOut, handler: zoomOut }
+      - { event: zoomToLayer, handler: zoomToLayer }
+directives:
+  - geodashMain.js
+templates:
+  - main.tpl.html
 handlers: []

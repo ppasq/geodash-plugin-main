@@ -1,0 +1,44 @@
+geodash.controllers.GeoDashControllerMain = function(
+  $interpolate, $scope, $element, $controller,
+  $http, $q,
+  state, dashboard, stateschema)
+{
+    $scope.dashboard = dashboard;
+    $scope.dashboard_flat = geodash.util.flatten($scope.dashboard);
+    $scope.state = geodash.init.state({
+      "state": state,
+      "stateschema": stateschema,
+      "dashboard": dashboard
+    });
+    $scope.assets = geodash.util.arrayToObject(extract("assets", $scope.dashboard));
+
+    $scope.refreshMap = function(state){
+      // Refresh all child controllers
+      $scope.$broadcast("refreshMap", {'state': state});
+    };
+
+    $scope.processEvent = function(event, args)
+    {
+      var c = $.grep(geodash.meta.controllers, function(x, i){
+        return x['name'] == 'GeoDashControllerMain';
+      })[0];
+
+      for(var i = 0; i < c.handlers.length; i++)
+      {
+        if(c.handlers[i]['event'] == event.name)
+        {
+          geodash.handlers[c.handlers[i]['handler']]($scope, $interpolate, $http, $q,  event, args);
+        }
+      }
+    };
+
+    $.each(geodash.listeners, function(i, x){ $scope.$on(i, x); });
+
+    var c = $.grep(geodash.meta.controllers, function(x, i){
+      return x['name'] == 'GeoDashControllerMain';
+    })[0];
+    for(var i = 0; i < c.handlers.length; i++)
+    {
+      $scope.$on(c.handlers[i]['event'], $scope.processEvent);
+    }
+};
