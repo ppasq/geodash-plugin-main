@@ -19,6 +19,7 @@ controllers:
       - { event: zoomIn, handler: zoomIn }
       - { event: zoomOut, handler: zoomOut }
       - { event: zoomToLayer, handler: zoomToLayer }
+      - { event: printMap, handler: printMap }
 directives:
   - geodashMain.js
 templates:
