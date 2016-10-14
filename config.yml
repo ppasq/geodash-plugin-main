@@ -20,6 +20,7 @@ controllers:
       - { event: zoomOut, handler: zoomOut }
       - { event: zoomToLayer, handler: zoomToLayer }
       - { event: printMap, handler: printMap }
+      - { event: toggleFullScreen, handler: toggleFullScreen }
 directives:
   - geodashMain.js
 templates:

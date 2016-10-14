@@ -27,7 +27,19 @@ geodash.controllers.GeoDashControllerMain = function(
       {
         if(c.handlers[i]['event'] == event.name)
         {
-          geodash.handlers[c.handlers[i]['handler']]($scope, $interpolate, $http, $q,  event, args);
+          var handlerName = c.handlers[i]['handler'];
+          if(angular.isDefined(handlerName))
+          {
+            var handlerFn = geodash.handlers[handlerName];
+            if(angular.isDefined(handlerFn))
+            {
+              handlerFn($scope, $interpolate, $http, $q,  event, args);
+            }
+            else
+            {
+              geodash.log.error("handlers", "Could not find handler with name "+handlerName+".");
+            }
+          }
         }
       }
     };
