@@ -22,6 +22,7 @@ controllers:
       - { event: printMap, handler: printMap }
       - { event: toggleFullScreen, handler: toggleFullScreen }
       - { event: toggleFeatureLayer, handler: toggleFeatureLayer }
+      - { event: toggleControl, handler: toggleControl }
 directives:
   - geodashMain.js
 templates:
