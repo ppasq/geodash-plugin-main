@@ -20,6 +20,8 @@ controllers:
       - { event: zoomOut, handler: zoomOut }
       - { event: zoomToLayer, handler: zoomToLayer }
       - { event: zoomToLocation, handler: zoomToLocation }
+      - { event: flyToLocation, handler: flyToLocation }
+      - { event: flyToExtent, handler: flyToExtent }
       - { event: printMap, handler: printMap }
       - { event: toggleFullScreen, handler: toggleFullScreen }
       - { event: toggleFeatureLayer, handler: toggleFeatureLayer }
