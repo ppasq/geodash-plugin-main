@@ -5,6 +5,7 @@ geodash.controllers.GeoDashControllerMain = function(
 {
     $scope.dashboard = dashboard;
     $scope.dashboard_flat = geodash.util.flatten($scope.dashboard);
+    $scope.stateschema = stateschema;
     $scope.state = geodash.init.state({
       "state": state,
       "stateschema": stateschema,
