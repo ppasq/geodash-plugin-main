@@ -29,6 +29,7 @@ controllers:
       - { event: toggleControl, handler: toggleControl }
 directives:
   - geodashMain.js
+  - geodashMap.js
 templates:
   - main.tpl.html
 handlers: []
