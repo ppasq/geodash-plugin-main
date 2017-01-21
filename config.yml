@@ -21,6 +21,7 @@ controllers:
       - { event: zoomToLayer, handler: zoomToLayer }
       - { event: zoomToLocation, handler: zoomToLocation }
       - { event: flyToLocation, handler: flyToLocation }
+      - { event: flyToCurrentLocation, handler: flyToCurrentLocation }
       - { event: flyToExtent, handler: flyToExtent }
       - { event: printMap, handler: printMap }
       - { event: toggleFullScreen, handler: toggleFullScreen }
