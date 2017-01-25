@@ -47,11 +47,16 @@ geodash.controllers.GeoDashControllerMain = function(
 
     $.each(geodash.listeners, function(i, x){ $scope.$on(i, x); });
 
-    var c = $.grep(geodash.meta.controllers, function(x, i){
-      return x['name'] == 'GeoDashControllerMain';
-    })[0];
+    var c = geodash.api.getController("GeoDashControllerMain");
     for(var i = 0; i < c.handlers.length; i++)
     {
-      $scope.$on(c.handlers[i]['event'], $scope.processEvent);
+      if(angular.isString(c.handlers[i]['handler']))
+      {
+        $scope.$on(c.handlers[i]['event'], $scope.processEvent);
+      }
+      else
+      {
+        $scope.$on(c.handlers[i]['event'], c.handlers[i]['handler']);
+      }
     }
 };
