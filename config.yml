@@ -8,11 +8,13 @@ controllers:
       - { event: filterChanged, handler: filterChanged }
       - { event: hideLayer, handler: hideLayer }
       - { event: hideLayers, handler: hideLayers }
+      - { event: hideModal, handler: hideModal }
       - { event: layerLoaded, handler: layerLoaded }
       - { event: requestToggleComponent, handler: requestToggleComponent }
       - { event: selectStyle, handler: selectStyle }
       - { event: showLayer, handler: showLayer }
       - { event: showLayers, handler: showLayers }
+      - { event: showModal, handler: showModal }
       - { event: stateChanged, handler: stateChanged }
       - { event: switchBaseLayer, handler: switchBaseLayer }
       - { event: viewChanged, handler: viewChanged }
@@ -27,6 +29,9 @@ controllers:
       - { event: toggleFullScreen, handler: toggleFullScreen }
       - { event: toggleFeatureLayer, handler: toggleFeatureLayer }
       - { event: toggleControl, handler: toggleControl }
+      - { event: startGeolocation, handler: startGeolocation }
+      - { event: stopGeolocation, handler: stopGeolocation }
+      - { event: toggleGeolocation, handler: toggleGeolocation }
 directives:
   - geodashMain.js
   - geodashMap.js

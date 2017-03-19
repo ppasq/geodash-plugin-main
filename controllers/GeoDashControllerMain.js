@@ -45,7 +45,7 @@ geodash.controllers.GeoDashControllerMain = function(
       }
     };
 
-    $.each(geodash.listeners, function(i, x){ $scope.$on(i, x); });
+    /*$.each(geodash.listeners, function(i, x){ $scope.$on(i, x); });*/
 
     var c = geodash.api.getController("GeoDashControllerMain");
     for(var i = 0; i < c.handlers.length; i++)
